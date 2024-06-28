@@ -7,7 +7,7 @@ const typeColor = ["92BC2C", "595761", "0C69C8", "D9BE2B", "EE90E6", "D3425F", "
 export default function Card({ data }) {
     const { id, name: { english }, type, profile: { weight, height } } = data;
     return (
-        <div style={{ border: `2px solid #${typeColor[pokemonTypes.indexOf(type[0])]}` }} className={`w-[280px] flex flex-col items-center justify-center p-2 gap-4 rounded-xl`}>
+        <div style={{ border: `2px solid #${typeColor[pokemonTypes.indexOf(type[0])]}` }} className={`w-[280px] flex flex-col items-center justify-center p-2 gap-4 rounded-xl transition-all duration-200 ease-out hover:bg-blue-300/30`}>
             <Image
                 src={`/images/${id}.png`}
                 alt={english}
