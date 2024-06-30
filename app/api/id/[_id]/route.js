@@ -4,11 +4,11 @@ import { connectionString } from "@/lib/db";
 import { Pokemon } from "@/lib/models/pokemon";
 
 export async function GET(request, { params }) {
-    const { name } = params;
-    console.log(`Data for ${name} requested`)
+    const { _id } = params;
+    console.log(`Data for pokemon:${_id} requested`)
     try {
         await mongoose.connect(connectionString)
-        const data = await Pokemon.find({ "name.english": { $regex: name.toLowerCase(), $options: 'i' } });
+        const data = await Pokemon.find({ _id: _id });
         return NextResponse.json({ result: data });
     } catch (error) {
         console.error(error);
