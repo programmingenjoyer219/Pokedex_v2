@@ -5,7 +5,7 @@ import useSWR from 'swr';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
-const axiosInstance = axios.create({ baseURL: 'http://localhost:3000/api/id' });
+const axiosInstance = axios.create({ baseURL: '/api/id' });
 
 const pokemonTypes = ["Bug", "Dark", "Dragon", "Electric", "Fairy", "Fighting", "Fire", "Flying", "Ghost", "Grass", "Ground", "Ice", "Normal", "Poison", "Psychic", "Rock", "Steel", "Water"];
 const typeColor = ["92BC2C", "595761", "0C69C8", "D9BE2B", "EE90E6", "D3425F", "FBA54C", "A1BBEC", "5F6DBC", "5FBD58", "DA7C4D", "75D0C1", "A0A29F", "B763CF", "FA8581", "C9BB8A", "5695A3", "539DDF"];
