@@ -25,56 +25,64 @@ export default function Page({ params: { id: _id } }) {
         if (pokemon[0]) {
             const { id, type, base, species, description, evolution, profile, name: { english } } = pokemon[0];
             return (
-                <main className='flex flex-col items-center w-full p-6 space-y-6 rounded-lg shadow-lg'>
-                    <h1 className='text-5xl font-extrabold text-blue-600 text-center mb-6'>{english}</h1>
-                    <div className='w-full flex flex-col items-center justify-center space-y-6 sm:grid sm:grid-cols-2 sm:gap-8 sm:justify-items-center'>
-                        <Image
-                            src={`/images/${id}.png`}
-                            className='sm:h-[280px] sm:w-[280px] shadow-md rounded-lg'
-                            height={200}
-                            width={200}
-                            alt={english}
-                        />
+                <main className='flex flex-col items-center w-full p-6 space-y-4'>
+                    <h1 className='text-4xl font-extrabold text-blue-600 text-center'>{english}</h1>
+                    <div className='grid grid-cols-2 grid-rows-1'>
 
-                        <div className='gap-4 flex flex-col items-center p-4 bg-white rounded-lg shadow-md'>
-                            <span className='w-full text-zinc-700 font-semibold'>Species: <span className='text-blue-600 font-bold'>{species}</span></span>
-                            <span className='w-full text-zinc-700 font-semibold'>Height: <span className='font-bold text-blue-600'>{profile.height}</span></span>
-                            <span className='w-full text-zinc-700 font-semibold'>Weight: <span className='font-bold text-blue-600'>{profile.weight}</span></span>
-                            <span className='w-full text-zinc-700 font-semibold'>Gender Ratio: <span className='font-bold text-blue-600'><i className="ri-men-line text-zinc-800 text-lg"></i> {profile.gender} <i className="ri-women-line text-zinc-800 text-lg"></i></span></span>
+                        <div id='card-left' className='gap-4 flex flex-col items-center p-4'>
+                            <div id='basic-info-container' className='flex items-center gap-2'>
+                                <Image
+                                    src={`/images/${id}.png`}
+                                    className='sm:h-[280px] sm:w-[280px]'
+                                    height={200}
+                                    width={200}
+                                    alt={english}
+                                />
 
-                            <span className='text-zinc-700 font-semibold w-full my-2'>Abilities:
-                                <span className='font-bold text-blue-600'>
-                                    {
-                                        profile.ability.map(a => {
-                                            return ` ${a[0]} `
-                                        })
-                                    }
-                                </span>
-                            </span>
+                                <div id='basic-info' className='min-w-[280px] min-h-[280px] flex flex-col justify-center space-y-2'>
+                                    <span className='w-full text-zinc-700 font-semibold'>Species: <span className='text-blue-600 font-bold'>{species}</span></span>
+                                    <span className='w-full text-zinc-700 font-semibold'>Height: <span className='font-bold text-blue-600'>{profile.height}</span></span>
+                                    <span className='w-full text-zinc-700 font-semibold'>Weight: <span className='font-bold text-blue-600'>{profile.weight}</span></span>
+                                    <span className='w-full text-zinc-700 font-semibold'>Gender Ratio: <span className='font-bold text-blue-600'><i className="ri-men-line text-zinc-800 text-lg"></i> {profile.gender} <i className="ri-women-line text-zinc-800 text-lg"></i></span></span>
 
-                            <div className='flex flex-col items-center w-full space-y-2'>
-                                <span className='text-zinc-700 font-semibold w-full'>Type:</span>
-                                <div className='flex items-center justify-start gap-2 w-full'>
-                                    {
-                                        type?.map((t, index) => {
-                                            return <div key={index} style={{ border: `2px solid #${typeColor[pokemonTypes.indexOf(t)]}`, backgroundColor: `#${typeColor[pokemonTypes.indexOf(t)]}` }} className="flex items-center p-2 gap-2 rounded-full w-[120px] shadow-md">
-                                                <Image
-                                                    src={`/pokemon_types/${t.toLowerCase()}.svg`}
-                                                    className="rounded-full p-1"
-                                                    style={{ backgroundColor: `#${typeColor[pokemonTypes.indexOf(t)]}` }}
-                                                    height={28}
-                                                    width={28}
-                                                    alt={t}
-                                                />
-                                                <span className="text-center w-full text-white font-medium">{t}</span>
-                                            </div>
-                                        })
-                                    }
+                                    <span className='text-zinc-700 font-semibold w-full'>Abilities:
+                                        <span className='font-bold text-blue-600'>
+                                            {
+                                                profile.ability.map(a => {
+                                                    return ` ${a[0]} `
+                                                })
+                                            }
+                                        </span>
+                                    </span>
+
+                                    <div id='pokemon-type' className='flex flex-col items-center space-y-2'>
+                                        <span className='text-zinc-700 font-semibold w-full'>Type:</span>
+                                        <div className='flex items-center justify-start gap-2 w-full'>
+                                            {
+                                                type?.map((t, index) => {
+                                                    return <div key={index} style={{ border: `2px solid #${typeColor[pokemonTypes.indexOf(t)]}`, backgroundColor: `#${typeColor[pokemonTypes.indexOf(t)]}` }} className="flex items-center p-2 gap-2 rounded-full w-[120px] shadow-md">
+                                                        <Image
+                                                            src={`/pokemon_types/${t.toLowerCase()}.svg`}
+                                                            className="rounded-full p-1"
+                                                            style={{ backgroundColor: `#${typeColor[pokemonTypes.indexOf(t)]}` }}
+                                                            height={28}
+                                                            width={28}
+                                                            alt={t}
+                                                        />
+                                                        <span className="text-center w-full text-white font-medium">{t}</span>
+                                                    </div>
+                                                })
+                                            }
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
+                            <p className='text-zinc-700 font-medium text-lg'>{description}</p>
                         </div>
 
-                        <div className='flex flex-col space-y-4 sm:col-span-2 sm:justify-self-stretch p-4 bg-white rounded-lg shadow-md'>
+
+                        <div id='card-right' className='flex flex-col space-y-4 p-4'>
                             <span className='w-full text-zinc-700 font-semibold text-2xl'>{english}'s Stats:</span>
                             <div className='grid grid-rows-6 grid-cols-2 w-full gap-4'>
                                 {/* HP */}
@@ -128,7 +136,6 @@ export default function Page({ params: { id: _id } }) {
                             </div>
                         </div>
 
-                        <p className='text-zinc-700 font-medium text-lg sm:col-span-2 p-4 bg-white rounded-lg shadow-md'>{description}</p>
                     </div>
                 </main>
             );

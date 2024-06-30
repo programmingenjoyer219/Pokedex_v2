@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function LoadingPage() {
     return (
-        <div className="fixed top-0 left-0 z-20 bg-zinc-700/50 w-screen h-screen flex flex-col items-center justify-center">
+        <div className="fixed top-0 left-0 z-20 bg-[#de5353] w-screen h-screen flex flex-col items-center justify-center">
             <Image
                 src="/pokeball.png"
                 alt="Pokeball"
@@ -10,7 +10,7 @@ export default function LoadingPage() {
                 height={100}
                 className="animate-spin mb-4"
             />
-            <span className="text-3xl text-center text-blue-800 font-semibold">Loading...</span>
+            <span className="text-3xl text-center text-gray-50 font-semibold">Loading...</span>
         </div>
     );
 }

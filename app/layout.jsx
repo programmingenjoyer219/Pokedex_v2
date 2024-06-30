@@ -12,14 +12,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} overflow-y-auto overflow-x-hidden flex flex-col items-center`}>
+      <body className={`${inter.className} min-h-screen overflow-y-auto overflow-x-hidden flex flex-col items-center justify-center`}>
         <Link href={"/"} className="flex items-center justify-center">
           <img
             src={"/pokemon-logo.png"}
             height={84}
             width={200}
             alt="Pokemon-logo"
-            className="sm:h-[180px] sm:w-[428px]"
+            className=""
           />
         </Link>
         {children}
