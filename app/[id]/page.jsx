@@ -27,10 +27,10 @@ export default function Page({ params: { id: _id } }) {
             return (
                 <main className='flex flex-col items-center w-full p-6 space-y-4'>
                     <h1 className='text-4xl font-extrabold text-blue-600 text-center'>{english}</h1>
-                    <div className='grid grid-cols-2 grid-rows-1'>
+                    <div className='grid grid-cols-1 auto-rows-auto min-[1150px]:grid-cols-2 min-[1150px]:grid-rows-1'>
 
                         <div id='card-left' className='gap-4 flex flex-col items-center p-4'>
-                            <div id='basic-info-container' className='flex items-center gap-2'>
+                            <div id='basic-info-container' className='flex flex-col w-full justify-between min-[575px]:flex-row items-center gap-2'>
                                 <Image
                                     src={`/images/${id}.png`}
                                     className='sm:h-[280px] sm:w-[280px]'
@@ -85,50 +85,74 @@ export default function Page({ params: { id: _id } }) {
                         <div id='card-right' className='flex flex-col space-y-4 p-4'>
                             <span className='w-full text-zinc-700 font-semibold text-2xl'>{english}'s Stats:</span>
                             <div className='grid grid-rows-6 grid-cols-2 w-full gap-4'>
+
                                 {/* HP */}
-                                <span className='w-full flex gap-2 items-center'>
-                                    <i className="ri-heart-pulse-fill text-2xl text-red-400"></i>
-                                    <span className='text-zinc-700 font-medium'>HP</span>
+                                <span className='w-full flex gap-2 items-center justify-between'>
+                                    <div className='flex items-center gap-4'>
+                                        <i className="ri-heart-pulse-fill text-2xl text-red-400"></i>
+                                        <span className='text-zinc-700 font-medium'>HP</span>
+                                    </div>
+                                    <span className='text-zinc-700 font-bold'>{base["HP"]}</span>
                                 </span>
                                 <div className='p-2 border rounded-md'>
                                     <div style={{ width: `${base["HP"] * 0.5}%` }} className='bg-red-400 text-red-400'>.</div>
                                 </div>
+
                                 {/* Attack */}
-                                <span className='w-full flex gap-2 items-center'>
-                                    <i className="ri-sword-line text-orange-400 text-2xl"></i>
-                                    <span className='text-zinc-700 font-medium'>Attack</span>
+                                <span className='w-full flex gap-2 items-center justify-between'>
+                                    <div className='flex items-center gap-4'>
+                                        <i className="ri-sword-line text-orange-400 text-2xl"></i>
+                                        <span className='text-zinc-700 font-medium'>Atk</span>
+                                    </div>
+                                    <span className='text-zinc-700 font-bold'>{base["Attack"]}</span>
                                 </span>
                                 <div className='p-2 border rounded-md'>
                                     <div style={{ width: `${base["Attack"] * 0.5}%` }} className='bg-orange-400/75 text-orange-400/75'>.</div>
                                 </div>
+
                                 {/* Sp. Attack */}
-                                <span className='w-full flex gap-2 items-center'>
-                                    <i className="ri-sword-fill text-2xl text-orange-400"></i>
-                                    <span className='text-zinc-700 font-medium'>Sp. Attack</span>
+                                <span className='w-full flex gap-2 items-center justify-between'>
+                                    <div className='flex items-center gap-4'>
+                                        <i className="ri-sword-fill text-2xl text-orange-400"></i>
+                                        <span className='text-zinc-700 font-medium'>Sp. Atk</span>
+                                    </div>
+                                    <span className='text-zinc-700 font-bold'>{base["Sp. Attack"]}</span>
                                 </span>
                                 <div className='p-2 border rounded-md'>
                                     <div style={{ width: `${base["Sp. Attack"] * 0.5}%` }} className='bg-orange-400 text-orange-400'>.</div>
                                 </div>
+
                                 {/* Defense */}
-                                <span className='w-full flex gap-2 items-center'>
-                                    <i className="ri-shield-line text-2xl text-green-600"></i>
-                                    <span className='text-zinc-700 font-medium'>Defense</span>
+                                <span className='w-full flex gap-2 items-center justify-between'>
+                                    <div className='flex items-center gap-4'>
+                                        <i className="ri-shield-line text-2xl text-green-600"></i>
+                                        <span className='text-zinc-700 font-medium'>Def</span>
+                                    </div>
+                                    <span className='text-zinc-700 font-bold'>{base["Defense"]}</span>
                                 </span>
                                 <div className='p-2 border rounded-md'>
                                     <div style={{ width: `${base["Defense"] * 0.5}%` }} className='bg-green-600/75 text-green-600/75'>.</div>
                                 </div>
+
                                 {/* Sp. Defence */}
-                                <span className='w-full flex gap-2 items-center'>
-                                    <i className="ri-shield-fill text-2xl text-green-600"></i>
-                                    <span className='text-zinc-700 font-medium'>Sp. Defense</span>
+                                <span className='w-full flex gap-2 items-center justify-between'>
+                                    <div className='flex items-center gap-4'>
+                                        <i className="ri-shield-fill text-2xl text-green-600"></i>
+                                        <span className='text-zinc-700 font-medium'>Sp. Def</span>
+                                    </div>
+                                    <span className='text-zinc-700 font-bold'>{base["Sp. Defense"]}</span>
                                 </span>
                                 <div className='p-2 border rounded-md'>
                                     <div style={{ width: `${base["Sp. Defense"] * 0.5}%` }} className='bg-green-600 text-green-600'>.</div>
                                 </div>
+
                                 {/* Speed */}
-                                <span className='w-full flex gap-2 items-center'>
-                                    <i className="ri-speed-up-line text-2xl text-sky-600"></i>
-                                    <span className='text-zinc-700 font-medium'>Speed</span>
+                                <span className='w-full flex gap-2 items-center justify-between'>
+                                    <div className='flex items-center gap-4'>
+                                        <i className="ri-speed-up-line text-2xl text-sky-600"></i>
+                                        <span className='text-zinc-700 font-medium'>Speed</span>
+                                    </div>
+                                    <span className='text-zinc-700 font-bold'>{base["Speed"]}</span>
                                 </span>
                                 <div className='p-2 border rounded-md'>
                                     <div style={{ width: `${base["Speed"] * 0.5}%` }} className='bg-sky-600 text-sky-600'>.</div>

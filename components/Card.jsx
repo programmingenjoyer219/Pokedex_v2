@@ -13,7 +13,7 @@ export default function Card({ data }) {
         <div
             onClick={() => { router.push(`/${_id}`) }}
             style={{ border: `2px solid #${typeColor[pokemonTypes.indexOf(type[0])]}` }}
-            className={`w-[280px] cursor-pointer flex flex-col items-center justify-center p-4 gap-4 rounded-2xl transition-all ease-out hover:bg-[#FFEBB2] shadow-md hover:shadow-lg transform hover:-translate-y-1`}
+            className={`w-[280px] cursor-pointer flex flex-col items-center justify-center p-4 gap-4 rounded-2xl transition-all ease-out hover:bg-gray-50 shadow-md hover:shadow-lg transform hover:-translate-y-1`}
         >
             <Image
                 src={`/images/${id}.png`}

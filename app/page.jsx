@@ -69,7 +69,7 @@ export default function Home() {
         (error1 || error2 || error3) && <ErrorPage error={[error1, error2, error3]} />
       }
       <CardGallery selectedPokemons={selectedPokemons} getAllPokemons={getAllPokemons} />
-      <button onClick={() => { window.scrollTo(0, 0) }} className="fixed bottom-4 right-4 bg-blue-500 transition-all hover:bg-blue-300 rounded-full h-10 w-10 flex items-center justify-center" id="scroll-to-top">
+      <button onClick={() => { window.scrollTo(0, 0) }} className="fixed bottom-4 right-4 bg-blue-500 transition-all hover:bg-blue-300 rounded-full h-12 w-12 flex items-center justify-center" id="scroll-to-top">
         <i className="ri-arrow-up-line text-xl"></i>
       </button>
     </main>

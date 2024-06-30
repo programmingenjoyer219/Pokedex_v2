@@ -10,7 +10,7 @@ export default function LoadingPage() {
                 height={100}
                 className="animate-spin mb-4"
             />
-            <span className="text-3xl text-center text-gray-50 font-semibold">Loading...</span>
+            {/* <span className="text-3xl text-center text-gray-50 font-semibold">Loading...</span> */}
         </div>
     );
 }
