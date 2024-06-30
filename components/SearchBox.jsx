@@ -22,12 +22,12 @@ export default function SearchBox({ getPokemonsByType, getPokemonsByName }) {
 
     return (
         <div className='flex flex-col items-center space-y-4 w-full'>
-            <form onSubmit={handleSubmit} className='flex flex-col space-y-4 sm:flex-row items-center rounded-lg justify-between space-x-2 w-full p-6 bg-gray-50 shadow-lg border border-gray-200'>
+            <form onSubmit={handleSubmit} className='flex flex-col space-y-4 sm:flex-row items-center rounded-lg justify-between space-x-2 w-full p-6 bg-gray-50 dark:bg-zinc-800 shadow-lg border border-gray-200 dark:border-zinc-500'>
                 <MagnifyingGlassIcon className='text-blue-600 h-6 w-6' />
                 <input
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className='bg-gray-50 flex-1 p-3 text-center sm:text-left rounded-md border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 placeholder:text-blue-300 text-gray-800 font-semibold'
+                    className='bg-gray-50 dark:bg-zinc-800 flex-1 p-3 text-center sm:text-left rounded-md border border-gray-300 dark:border-zinc-500 focus:outline-none focus:border-blue-500 focus:ring placeholder:text-blue-300 text-gray-800 dark:text-gray-200 font-semibold'
                     type="text"
                     placeholder='I choose you!'
                 />
@@ -36,7 +36,7 @@ export default function SearchBox({ getPokemonsByType, getPokemonsByName }) {
                 </button>
             </form>
 
-            <Marquee className='w-full p-4 border-2 border-blue-500 rounded-md bg-gray-50 shadow-lg' pauseOnHover>
+            <Marquee className='w-full p-4 border-2 border-blue-500 rounded-md bg-gray-50 dark:bg-zinc-800 shadow-lg' pauseOnHover>
                 {
                     pokemonTypes.map((type, index) => (
                         <button

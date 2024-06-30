@@ -7,7 +7,7 @@ import { pokemonData } from "@/pokemonData";
 export async function GET() {
     try {
         await mongoose.connect(connectionString)
-        const data = await Pokemon.find({});
+        const data = await Pokemon.find({}).sort({ id: 1 });
         return NextResponse.json({ result: data })
 
         // return NextResponse.json({ result: pokemonData });

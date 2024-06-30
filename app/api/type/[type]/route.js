@@ -17,7 +17,7 @@ export async function GET(request, { params }) {
     console.log(`Data for pokemon-type: ${type} requested`)
     try {
         await mongoose.connect(connectionString)
-        const data = await Pokemon.find({ type: { $elemMatch: { $eq: toTitleCase(type) } } });
+        const data = await Pokemon.find({ type: { $elemMatch: { $eq: toTitleCase(type) } } }).sort({ id: 1 });
         return NextResponse.json({ result: data });
     } catch (error) {
         console.error(error);

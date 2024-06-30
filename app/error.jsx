@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function ErrorPage() {
     return (
-        <div className='flex flex-col items-center justify-center min-h-screen bg-yellow-100 text-blue-900 p-4'>
+        <div className='flex flex-col items-center justify-center text-blue-400 p-4'>
             <Image
                 src={`/sprites/0.png`}
                 width={150}

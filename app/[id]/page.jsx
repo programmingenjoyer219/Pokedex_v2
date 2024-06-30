@@ -3,6 +3,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import useSWR from 'swr';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 const axiosInstance = axios.create({ baseURL: 'http://localhost:3000/api/id' });
 
@@ -20,12 +21,30 @@ async function fetcher(endpoint) {
 }
 
 export default function Page({ params: { id: _id } }) {
+    const [light, setLight] = useState(true);
     const { data: pokemon, isLoading, error } = useSWR(`/${_id}`, fetcher, { refreshInterval: 1000 * 60 * 60 });
+
+    useEffect(() => {
+        let htmlTag = document.querySelector("html");
+        if (light) {
+            htmlTag.classList.remove("dark");
+        } else {
+            htmlTag.classList.add("dark");
+        }
+    }, [light])
+
     if (!isLoading && !error) {
         if (pokemon[0]) {
             const { id, type, base, species, description, evolution, profile, name: { english } } = pokemon[0];
             return (
                 <main className='flex flex-col items-center w-full p-6 space-y-4'>
+                    {/* Dark mode toggle button */}
+                    <button onClick={() => { setLight(p => !p) }} className={`absolute flex items-center justify-center top-4 right-4 h-12 w-12 rounded-full bg-blue-500 transition-all duration-200 ease-out ${light ? 'hover:bg-zinc-800' : 'hover:bg-gray-300'}`}>
+                        {
+                            light ? (<i className="ri-moon-fill text-xl text-gray-200"></i>) : (<i className="ri-sun-fill text-xl text-zinc-800"></i>)
+                        }
+                    </button>
+
                     <h1 className='text-4xl font-extrabold text-blue-600 text-center'>{english}</h1>
                     <div className='grid grid-cols-1 auto-rows-auto min-[1150px]:grid-cols-2 min-[1150px]:grid-rows-1'>
 
@@ -40,12 +59,12 @@ export default function Page({ params: { id: _id } }) {
                                 />
 
                                 <div id='basic-info' className='min-w-[280px] min-h-[280px] flex flex-col justify-center space-y-2'>
-                                    <span className='w-full text-zinc-700 font-semibold'>Species: <span className='text-blue-600 font-bold'>{species}</span></span>
-                                    <span className='w-full text-zinc-700 font-semibold'>Height: <span className='font-bold text-blue-600'>{profile.height}</span></span>
-                                    <span className='w-full text-zinc-700 font-semibold'>Weight: <span className='font-bold text-blue-600'>{profile.weight}</span></span>
-                                    <span className='w-full text-zinc-700 font-semibold'>Gender Ratio: <span className='font-bold text-blue-600'><i className="ri-men-line text-zinc-800 text-lg"></i> {profile.gender} <i className="ri-women-line text-zinc-800 text-lg"></i></span></span>
+                                    <span className='w-full text-zinc-700 dark:text-gray-200 font-semibold'>Species: <span className='text-blue-600 font-bold'>{species}</span></span>
+                                    <span className='w-full text-zinc-700 dark:text-gray-200 font-semibold'>Height: <span className='font-bold text-blue-600'>{profile.height}</span></span>
+                                    <span className='w-full text-zinc-700 dark:text-gray-200 font-semibold'>Weight: <span className='font-bold text-blue-600'>{profile.weight}</span></span>
+                                    <span className='w-full text-zinc-700 dark:text-gray-200 font-semibold'>Gender Ratio: <span className='font-bold text-blue-600'><i className="ri-men-line text-zinc-800 dark:text-gray-400 text-lg"></i> {profile.gender} <i className="ri-women-line text-zinc-800 dark:text-gray-400 text-lg"></i></span></span>
 
-                                    <span className='text-zinc-700 font-semibold w-full'>Abilities:
+                                    <span className='text-zinc-700 dark:text-gray-200 font-semibold w-full'>Abilities:
                                         <span className='font-bold text-blue-600'>
                                             {
                                                 profile.ability.map(a => {
@@ -56,7 +75,7 @@ export default function Page({ params: { id: _id } }) {
                                     </span>
 
                                     <div id='pokemon-type' className='flex flex-col items-center space-y-2'>
-                                        <span className='text-zinc-700 font-semibold w-full'>Type:</span>
+                                        <span className='text-zinc-700 dark:text-gray-200 font-semibold w-full'>Type:</span>
                                         <div className='flex items-center justify-start gap-2 w-full'>
                                             {
                                                 type?.map((t, index) => {
@@ -78,21 +97,21 @@ export default function Page({ params: { id: _id } }) {
                                 </div>
                             </div>
 
-                            <p className='text-zinc-700 font-medium text-lg'>{description}</p>
+                            <p className='text-zinc-700 dark:text-gray-200 font-medium text-lg'>{description}</p>
                         </div>
 
 
                         <div id='card-right' className='flex flex-col space-y-4 p-4'>
-                            <span className='w-full text-zinc-700 font-semibold text-2xl'>{english}'s Stats:</span>
+                            <span className='w-full text-zinc-700 dark:text-gray-200 font-semibold text-2xl'>{english}'s Stats:</span>
                             <div className='grid grid-rows-6 grid-cols-2 w-full gap-4'>
 
                                 {/* HP */}
                                 <span className='w-full flex gap-2 items-center justify-between'>
                                     <div className='flex items-center gap-4'>
                                         <i className="ri-heart-pulse-fill text-2xl text-red-400"></i>
-                                        <span className='text-zinc-700 font-medium'>HP</span>
+                                        <span className='text-zinc-700 dark:text-gray-200 font-medium'>HP</span>
                                     </div>
-                                    <span className='text-zinc-700 font-bold'>{base["HP"]}</span>
+                                    <span className='text-zinc-700 dark:text-gray-200 font-bold'>{base["HP"]}</span>
                                 </span>
                                 <div className='p-2 border rounded-md'>
                                     <div style={{ width: `${base["HP"] * 0.5}%` }} className='bg-red-400 text-red-400'>.</div>
@@ -102,9 +121,9 @@ export default function Page({ params: { id: _id } }) {
                                 <span className='w-full flex gap-2 items-center justify-between'>
                                     <div className='flex items-center gap-4'>
                                         <i className="ri-sword-line text-orange-400 text-2xl"></i>
-                                        <span className='text-zinc-700 font-medium'>Atk</span>
+                                        <span className='text-zinc-700 dark:text-gray-200 font-medium'>Atk</span>
                                     </div>
-                                    <span className='text-zinc-700 font-bold'>{base["Attack"]}</span>
+                                    <span className='text-zinc-700 dark:text-gray-200 font-bold'>{base["Attack"]}</span>
                                 </span>
                                 <div className='p-2 border rounded-md'>
                                     <div style={{ width: `${base["Attack"] * 0.5}%` }} className='bg-orange-400/75 text-orange-400/75'>.</div>
@@ -114,9 +133,9 @@ export default function Page({ params: { id: _id } }) {
                                 <span className='w-full flex gap-2 items-center justify-between'>
                                     <div className='flex items-center gap-4'>
                                         <i className="ri-sword-fill text-2xl text-orange-400"></i>
-                                        <span className='text-zinc-700 font-medium'>Sp. Atk</span>
+                                        <span className='text-zinc-700 dark:text-gray-200 font-medium'>Sp. Atk</span>
                                     </div>
-                                    <span className='text-zinc-700 font-bold'>{base["Sp. Attack"]}</span>
+                                    <span className='text-zinc-700 dark:text-gray-200 font-bold'>{base["Sp. Attack"]}</span>
                                 </span>
                                 <div className='p-2 border rounded-md'>
                                     <div style={{ width: `${base["Sp. Attack"] * 0.5}%` }} className='bg-orange-400 text-orange-400'>.</div>
@@ -126,9 +145,9 @@ export default function Page({ params: { id: _id } }) {
                                 <span className='w-full flex gap-2 items-center justify-between'>
                                     <div className='flex items-center gap-4'>
                                         <i className="ri-shield-line text-2xl text-green-600"></i>
-                                        <span className='text-zinc-700 font-medium'>Def</span>
+                                        <span className='text-zinc-700 dark:text-gray-200 font-medium'>Def</span>
                                     </div>
-                                    <span className='text-zinc-700 font-bold'>{base["Defense"]}</span>
+                                    <span className='text-zinc-700 dark:text-gray-200 font-bold'>{base["Defense"]}</span>
                                 </span>
                                 <div className='p-2 border rounded-md'>
                                     <div style={{ width: `${base["Defense"] * 0.5}%` }} className='bg-green-600/75 text-green-600/75'>.</div>
@@ -138,9 +157,9 @@ export default function Page({ params: { id: _id } }) {
                                 <span className='w-full flex gap-2 items-center justify-between'>
                                     <div className='flex items-center gap-4'>
                                         <i className="ri-shield-fill text-2xl text-green-600"></i>
-                                        <span className='text-zinc-700 font-medium'>Sp. Def</span>
+                                        <span className='text-zinc-700 dark:text-gray-200 font-medium'>Sp. Def</span>
                                     </div>
-                                    <span className='text-zinc-700 font-bold'>{base["Sp. Defense"]}</span>
+                                    <span className='text-zinc-700 dark:text-gray-200 font-bold'>{base["Sp. Defense"]}</span>
                                 </span>
                                 <div className='p-2 border rounded-md'>
                                     <div style={{ width: `${base["Sp. Defense"] * 0.5}%` }} className='bg-green-600 text-green-600'>.</div>
@@ -150,9 +169,9 @@ export default function Page({ params: { id: _id } }) {
                                 <span className='w-full flex gap-2 items-center justify-between'>
                                     <div className='flex items-center gap-4'>
                                         <i className="ri-speed-up-line text-2xl text-sky-600"></i>
-                                        <span className='text-zinc-700 font-medium'>Speed</span>
+                                        <span className='text-zinc-700 dark:text-gray-200 font-medium'>Speed</span>
                                     </div>
-                                    <span className='text-zinc-700 font-bold'>{base["Speed"]}</span>
+                                    <span className='text-zinc-700 dark:text-gray-200 font-bold'>{base["Speed"]}</span>
                                 </span>
                                 <div className='p-2 border rounded-md'>
                                     <div style={{ width: `${base["Speed"] * 0.5}%` }} className='bg-sky-600 text-sky-600'>.</div>
@@ -165,7 +184,7 @@ export default function Page({ params: { id: _id } }) {
             );
         } else {
             return (
-                <div className='flex flex-col items-center justify-center text-blue-900 p-4'>
+                <div className='flex flex-col items-center justify-center text-blue-900 dark:text-sky-400 p-4'>
                     <Image
                         src={`/sprites/${Math.floor(Math.random() * 899)}.png`}
                         width={150}

@@ -8,7 +8,7 @@ export async function GET(request, { params }) {
     console.log(`Data for ${name} requested`)
     try {
         await mongoose.connect(connectionString)
-        const data = await Pokemon.find({ "name.english": { $regex: name.toLowerCase(), $options: 'i' } });
+        const data = await Pokemon.find({ "name.english": { $regex: name.toLowerCase(), $options: 'i' } }).sort({ "name.english": 1 });
         return NextResponse.json({ result: data });
     } catch (error) {
         console.error(error);

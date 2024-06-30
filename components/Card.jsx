@@ -13,7 +13,7 @@ export default function Card({ data }) {
         <div
             onClick={() => { router.push(`/${_id}`) }}
             style={{ border: `2px solid #${typeColor[pokemonTypes.indexOf(type[0])]}` }}
-            className={`w-[280px] cursor-pointer flex flex-col items-center justify-center p-4 gap-4 rounded-2xl transition-all ease-out hover:bg-gray-50 shadow-md hover:shadow-lg transform hover:-translate-y-1`}
+            className={`dark:bg-zinc-800 w-[280px] cursor-pointer flex flex-col items-center justify-center p-4 gap-4 rounded-2xl transition-all ease-out hover:bg-gray-50 dark:hover:bg-zinc-700 shadow-md hover:shadow-lg transform hover:-translate-y-1`}
         >
             <Image
                 src={`/images/${id}.png`}
@@ -22,7 +22,7 @@ export default function Card({ data }) {
                 width={120}
                 className="rounded-lg"
             />
-            <span className="text-zinc-700 font-bold text-xl">{english}</span>
+            <span className="text-zinc-700 dark:text-gray-200 font-bold text-xl">{english}</span>
             <div className="flex items-center justify-center gap-2">
                 {
                     type?.map(t => (
@@ -47,13 +47,13 @@ export default function Card({ data }) {
 
             <div className="flex items-center justify-center gap-4 mt-2">
                 <div className="flex items-center justify-center gap-1">
-                    <i className="ri-ruler-fill text-gray-600"></i>
-                    <span className="text-zinc-700 font-medium">{height}</span>
+                    <i className="ri-ruler-fill text-gray-600 dark:text-gray-300"></i>
+                    <span className="text-zinc-700 dark:text-gray-200 font-medium">{height}</span>
                 </div>
 
                 <div className="flex items-center justify-center gap-1">
-                    <i className="ri-scales-2-fill text-gray-600"></i>
-                    <span className="text-zinc-700 font-medium">{weight}</span>
+                    <i className="ri-scales-2-fill text-gray-600 dark:text-gray-300"></i>
+                    <span className="text-zinc-700 dark:text-gray-200 font-medium">{weight}</span>
                 </div>
             </div>
         </div>
