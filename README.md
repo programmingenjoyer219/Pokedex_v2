@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pokedex 2.0
 
-## Getting Started
+Welcome to Pokedex 2.0! This is an enhanced version of my favorite project, built using Next.js, MongoDB, and SWR. This project showcases a comprehensive list of Pokémon with various features to improve user experience and performance.
 
-First, run the development server:
+## Introduction
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Pokedex 2.0 is a web application that allows users to explore a list of Pokémon, view detailed information, and enjoy a dynamic and responsive user interface. This project is an upgrade from the original version, incorporating new technologies and improved performance.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Next.js Integration**: Seamless API integration for efficient data fetching and routing.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **SWR for Data Fetching**: Lightweight and swift data fetching using the `useSWR` hook, which improves response times by fetching cached data first.
 
-## Learn More
+- **Custom Error Pages**: Styled error pages to maintain a consistent user experience even during crashes.
 
-To learn more about Next.js, take a look at the following resources:
+- **MongoDB Database**: Reliable data storage and fetching with MongoDB, avoiding the limitations of Firebase-Firestore.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Technologies Used
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Next.js**: A React framework for server-side rendering and static site generation.
+- **React**: A JavaScript library for building user interfaces.
+- **SWR**: A React Hooks library for data fetching.
+- **MongoDB**: A NoSQL database for storing Pokémon data.
+- **Marquee Component**: Dynamic slideshow component for Pokémon-type buttons, enhancing the UI.
+- **Tailwind CSS**: A utility-first CSS framework for styling.
+- **Vercel**: A cloud platform for deploying Next.js applications.
 
-## Deploy on Vercel
+## Resources
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Marquee Component**: https://www.react-fast-marquee.com/
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Remix Icons**: https://remixicon.com/
+
+- **Hero Icons**: https://heroicons.com/
+
+## Contributing
+
+Contributions are welcome! If you have suggestions or improvements, feel free to create a pull request or open an issue.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+Thank you for checking out Pokedex 2.0! Feel free to explore, contribute, and provide feedback. Your suggestions are appreciated.
