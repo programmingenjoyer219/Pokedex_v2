@@ -13,9 +13,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en" className="">
-			<head>
-				<title>Pokedex 2.0</title>
-			</head>
 			<body className={`${inter.className} bg-gray-100 dark:bg-zinc-900 min-h-screen overflow-y-auto overflow-x-hidden flex flex-col items-center justify-center`}>
 				<ThemeToggleButton />
 
