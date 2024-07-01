@@ -22,7 +22,6 @@ async function fetcher(endpoint) {
 }
 
 export default function Home() {
-	const [light, setLight] = useState(true);
 	const [selectedPokemons, setSelectedPokemons] = useState(null);
 	const [pokemonType, setType] = useState(null);
 	const [pokemonName, setName] = useState(null);
@@ -30,15 +29,6 @@ export default function Home() {
 	const { data: allPokemons, isLoading: isLoading1, error: error1 } = useSWR("/all", fetcher, { refreshInterval: 1000 * 60 * 60 });
 	const { data: pokemonsByType, isLoading: isLoading2, error: error2 } = useSWR(pokemonType ? `/type/${pokemonType}` : null, fetcher, { refreshInterval: 1000 * 60 * 60 });
 	const { data: pokemonsByName, isLoading: isLoading3, error: error3 } = useSWR(pokemonName ? `/name/${pokemonName}` : null, fetcher, { refreshInterval: 1000 * 60 * 60 });
-
-	useEffect(() => {
-		let htmlTag = document.querySelector("html");
-		if (light) {
-			htmlTag.classList.remove("dark");
-		} else {
-			htmlTag.classList.add("dark");
-		}
-	}, [light])
 
 	function getPokemonsByType(type) {
 		console.log("getPokemonsByType: " + type);
@@ -71,13 +61,6 @@ export default function Home() {
 
 	return (
 		<main className="flex flex-col items-center w-full h-full px-4">
-			{/* Dark mode toggle button */}
-			<button onClick={() => { setLight(p => !p) }} className={`absolute flex items-center justify-center top-4 right-4 h-12 w-12 rounded-full bg-blue-500 transition-all duration-200 ease-out ${light ? 'hover:bg-zinc-800' : 'hover:bg-gray-300'}`}>
-				{
-					light ? (<i className="ri-moon-fill text-xl text-gray-200"></i>) : (<i className="ri-sun-fill text-xl text-zinc-800"></i>)
-				}
-			</button>
-
 			{/* Search Box */}
 			<SearchBox getPokemonsByName={getPokemonsByName} getPokemonsByType={getPokemonsByType} />
 

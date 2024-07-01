@@ -1,9 +1,8 @@
-"use client"
+"use client";
 import axios from 'axios';
 import Image from 'next/image';
 import useSWR from 'swr';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
 
 const axiosInstance = axios.create({ baseURL: '/api/id' });
 
@@ -21,30 +20,13 @@ async function fetcher(endpoint) {
 }
 
 export default function Page({ params: { id: _id } }) {
-    const [light, setLight] = useState(true);
     const { data: pokemon, isLoading, error } = useSWR(`/${_id}`, fetcher, { refreshInterval: 1000 * 60 * 60 });
-
-    useEffect(() => {
-        let htmlTag = document.querySelector("html");
-        if (light) {
-            htmlTag.classList.remove("dark");
-        } else {
-            htmlTag.classList.add("dark");
-        }
-    }, [light])
 
     if (!isLoading && !error) {
         if (pokemon[0]) {
             const { id, type, base, species, description, evolution, profile, name: { english } } = pokemon[0];
             return (
                 <main className='flex flex-col items-center w-full p-6 space-y-4'>
-                    {/* Dark mode toggle button */}
-                    <button onClick={() => { setLight(p => !p) }} className={`absolute flex items-center justify-center top-4 right-4 h-12 w-12 rounded-full bg-blue-500 transition-all duration-200 ease-out ${light ? 'hover:bg-zinc-800' : 'hover:bg-gray-300'}`}>
-                        {
-                            light ? (<i className="ri-moon-fill text-xl text-gray-200"></i>) : (<i className="ri-sun-fill text-xl text-zinc-800"></i>)
-                        }
-                    </button>
-
                     <h1 className='text-4xl font-extrabold text-blue-600 text-center'>{english}</h1>
                     <div className='grid grid-cols-1 auto-rows-auto min-[1150px]:grid-cols-2 min-[1150px]:grid-rows-1'>
 
