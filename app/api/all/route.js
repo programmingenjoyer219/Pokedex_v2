@@ -1,16 +1,13 @@
 import { NextResponse } from "next/server";
-import mongoose from "mongoose";
-import { connectionString } from "@/lib/db";
-import { Pokemon } from "@/lib/models/pokemon";
-import { pokemonData } from "@/pokemonData";
+import { Pokemon } from "@/models/pokemon";
+import connectDB from "@/config/db";
 
 export async function GET() {
     try {
-        await mongoose.connect(connectionString)
+        await connectDB();
         const data = await Pokemon.find({}).sort({ id: 1 });
         return NextResponse.json({ result: data })
 
-        // return NextResponse.json({ result: pokemonData });
     } catch (error) {
         console.error(error);
         return NextResponse.json({ result: [], message: error })

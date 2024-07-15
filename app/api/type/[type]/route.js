@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-import mongoose from "mongoose";
-import { connectionString } from "@/lib/db";
-import { Pokemon } from "@/lib/models/pokemon";
+import { Pokemon } from "@/models/pokemon";
+import connectDB from "@/config/db";
 
 function toTitleCase(str) {
     return str.replace(
@@ -16,7 +15,7 @@ export async function GET(request, { params }) {
     const { type } = params;
     console.log(`Data for pokemon-type: ${type} requested`)
     try {
-        await mongoose.connect(connectionString)
+        await connectDB();
         const data = await Pokemon.find({ type: { $elemMatch: { $eq: toTitleCase(type) } } }).sort({ id: 1 });
         return NextResponse.json({ result: data });
     } catch (error) {

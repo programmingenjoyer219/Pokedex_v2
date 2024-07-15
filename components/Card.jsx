@@ -15,7 +15,7 @@ export default function Card({ data }) {
             style={{ border: `2px solid #${typeColor[pokemonTypes.indexOf(type[0])]}` }}
             className={`dark:bg-zinc-800 w-[280px] cursor-pointer flex flex-col items-center justify-center p-4 gap-4 rounded-2xl transition-all ease-out hover:bg-gray-50 dark:hover:bg-zinc-700 shadow-md hover:shadow-lg transform hover:-translate-y-1`}
         >
-            <Image
+            <img
                 src={`/images/${id}.png`}
                 alt={english}
                 height={120}
@@ -31,7 +31,7 @@ export default function Card({ data }) {
                             style={{ border: `2px solid #${typeColor[pokemonTypes.indexOf(t)]}`, backgroundColor: `#${typeColor[pokemonTypes.indexOf(t)]}` }}
                             className="flex items-center p-2 gap-2 rounded-full w-[120px] shadow-sm"
                         >
-                            <Image
+                            <img
                                 src={`/pokemon_types/${t.toLowerCase()}.svg`}
                                 className="rounded-full p-1"
                                 style={{ backgroundColor: `#${typeColor[pokemonTypes.indexOf(t)]}` }}
